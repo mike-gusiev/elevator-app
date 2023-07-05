@@ -51,7 +51,7 @@ const ElevatorStatusPanelWrapper = styled.div`
 
 const CurrentFloor = styled.div`
     color: ${({ theme }) => theme.colors.textWhite};
-    font-size: 48px;
+    font-size: ${({ theme }) => theme.fontSize.fontSizeHeading1};
     text-align: center;
 `;
 

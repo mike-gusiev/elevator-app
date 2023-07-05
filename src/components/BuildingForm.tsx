@@ -51,10 +51,10 @@ const FormItem = styled.div`
 `;
 
 const Input = styled.input`
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.fontSize};
     color: ${({ theme }) => theme.colors.textBlack};
-    padding: 15px;
-    width: 350px;
+    padding: ${({ theme }) => theme.paddings.small};
+    width: 100%;
     height: 50px;
     background: ${({ theme }) => theme.colors.backgroundColor};
     border-radius: ${({ theme }) => theme.borderRadius.small};
