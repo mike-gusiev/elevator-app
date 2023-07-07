@@ -4,10 +4,13 @@ import styled from "@emotion/styled";
 interface FloorProps {
     floorNumber: number;
     onFloorClick: () => void;
+    disabled: boolean;
 }
 
-export const Floor: React.FC<FloorProps> = ({ floorNumber, onFloorClick }) => (
-    <FloorButton onClick={onFloorClick}>{floorNumber}</FloorButton>
+export const Floor: React.FC<FloorProps> = ({ floorNumber, disabled, onFloorClick }) => (
+    <FloorButton disabled={disabled} onClick={onFloorClick}>
+        {floorNumber}
+    </FloorButton>
 );
 
 const FloorButton = styled.button`
@@ -31,5 +34,10 @@ const FloorButton = styled.button`
 
     &:active {
         background-color: #999;
+    }
+
+    &:disabled {
+        cursor: not-allowed;
+        background-color: #aaa;
     }
 `;

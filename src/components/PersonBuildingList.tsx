@@ -2,10 +2,11 @@ import React from "react";
 import styled from "@emotion/styled";
 
 import { BuildingCard } from ".";
-import { Building, Elevator } from "../services";
+import { Building, Elevator, PersonElevatorStatus } from "../services";
 
 export interface BuildingPersonElevatorStatus extends Omit<Building, "elevators"> {
     elevator?: Elevator;
+    personStatus?: PersonElevatorStatus;
 }
 
 interface PersonBuildingListProps {

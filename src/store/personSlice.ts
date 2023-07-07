@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 import { RootState } from "../app-state";
-import { Person } from "../services";
+import { Person, PersonElevatorStatus } from "../services";
 
 const createPerson = (id: number) => ({ id, waitingForElevator: null });
 
@@ -25,12 +25,19 @@ export const personSlice = createSlice({
         },
         updatePersonWaitingStatus: (
             state,
-            action: PayloadAction<{ id: number; elevatorId: number; targetFloor: number }>
+            action: PayloadAction<{
+                id: number;
+                elevatorId: number;
+                targetFloor: number;
+                waitingStatus: PersonElevatorStatus;
+            }>
         ) => {
-            const { id, elevatorId, targetFloor } = action.payload;
+            const { id, elevatorId, targetFloor, waitingStatus } = action.payload;
 
             state.all = state.all.map((person) =>
-                person.id !== id ? person : { ...person, waitingForElevator: { elevatorId, targetFloor } }
+                person.id !== id
+                    ? person
+                    : { ...person, waitingForElevator: { elevatorId, targetFloor, waitingStatus } }
             );
 
             return state;

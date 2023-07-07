@@ -8,21 +8,26 @@ interface ElevatorStatusPanelProps {
     movingDirection?: ElevatorMovingStatus;
     currentFloor?: number;
     elevatorId?: number;
+    personElevatorStatus?: string;
 }
 
 export const ElevatorStatusPanel: React.FC<ElevatorStatusPanelProps> = ({
     movingDirection,
     currentFloor,
-    elevatorId
+    elevatorId,
+    personElevatorStatus
 }) => (
-    <ElevatorStatusPanelWrapper>
-        {elevatorId && <Text>Elevator: {elevatorId}</Text>}
-        <CurrentFloor>{currentFloor}</CurrentFloor>
-        <ArrowWrapper>
-            <Arrow direction="up" isActive={movingDirection === "up"} />
-            <Arrow direction="down" isActive={movingDirection === "down"} />
-        </ArrowWrapper>
-    </ElevatorStatusPanelWrapper>
+    <div>
+        <ElevatorStatusPanelWrapper>
+            {elevatorId && <Text>Elevator: {elevatorId}</Text>}
+            <CurrentFloor>{currentFloor}</CurrentFloor>
+            <ArrowWrapper>
+                <Arrow direction="up" isActive={movingDirection === "up"} />
+                <Arrow direction="down" isActive={movingDirection === "down"} />
+            </ArrowWrapper>
+        </ElevatorStatusPanelWrapper>
+        <div>{personElevatorStatus ?? ""}</div>
+    </div>
 );
 
 const Text = styled.p`

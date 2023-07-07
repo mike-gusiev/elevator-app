@@ -15,7 +15,13 @@ export interface Elevator {
     targetFloor: number | null;
 }
 
+export type PersonElevatorStatus = "arrived" | "waiting";
+
 export interface Person {
     id: number;
-    waitingForElevator: { targetFloor: number; elevatorId: number } | null;
+    waitingForElevator: {
+        targetFloor: number;
+        elevatorId: number;
+        waitingStatus: PersonElevatorStatus;
+    } | null;
 }

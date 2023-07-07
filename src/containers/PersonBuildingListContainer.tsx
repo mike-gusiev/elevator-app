@@ -20,7 +20,7 @@ export const PersonBuildingListContainer: React.FC = () => {
         );
 
         if (elevator) {
-            return { ...baseInfo, elevator };
+            return { ...baseInfo, elevator, personStatus: currentPerson?.waitingForElevator?.waitingStatus };
         }
 
         return baseInfo;
