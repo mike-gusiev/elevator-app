@@ -12,12 +12,19 @@ interface ElevatorQueue {
 
 const elevatorQueues: ElevatorQueue = {};
 
-const findClosestElevator = (elevators: Elevator[]): Elevator | null =>
+const findClosestElevator = (elevators: Elevator[], targetFloor: number): Elevator | null =>
     elevators.reduce<Elevator | null>((acc, el) => {
         if (!acc) return el;
 
         const prevQueue = elevatorQueues[acc.id]?.map((el) => el.targetFloor);
         const newQueue = elevatorQueues[el.id]?.map((el) => el.targetFloor);
+
+        if (!prevQueue && !newQueue) {
+            const accDistance = Math.abs(acc.currentFloor - targetFloor);
+            const elDistance = Math.abs(el.currentFloor - targetFloor);
+
+            return accDistance < elDistance ? acc : el;
+        }
 
         if (!prevQueue) return acc;
         if (!newQueue) return el;
@@ -84,7 +91,7 @@ export function* watchElevatorControllSaga() {
             selectElevatorsByBuildingId(state, buildingId)
         );
 
-        const elevator = findClosestElevator(allElevators);
+        const elevator = findClosestElevator(allElevators, newTargetFloor);
 
         if (!elevator) {
             alert("This building does not have elevators");
