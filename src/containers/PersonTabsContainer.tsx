@@ -10,7 +10,7 @@ export const PersonTabsContainer = () => {
     const info = useSelector(selectPersonInfo);
 
     const handleOnClickAdd = () => {
-        const lastId = info.all[info.all.length - 1].id;
+        const lastId = info.all[info.all.length - 1]?.id ?? 0;
         dispatch(addPerson({ id: lastId + 1 }));
     };
 
